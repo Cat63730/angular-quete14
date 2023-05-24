@@ -1,0 +1,103 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="signInForm" #myForm="ngForm">
+  <div class="inputs">
+    <label for="userName">Votre Nom</label>
+    <input
+      formControlName="userName"
+      type="text"
+      id="userName"
+      name="userName"
+      placeholder="Arguel"
+    />
+    <!-- <div *ngIf="myForm.submitted && signInForm.controls.userName.errors">
+      <span *ngIf="signInForm.controls.userName.errors?.['required']"
+        >Le champ nom est obligatoire</span
+      >
+    </div> -->
+
+    <label for="email">Votre Mail</label>
+    <input
+      formControlName="email"
+      type="email"
+      id="email"
+      name="email"
+      placeholder="arguel@gmail.com"
+    />
+    <!-- <div *ngIf="myForm.submitted && signInForm.controls.email.errors">
+      <span *ngIf="signInForm.controls.email.errors?.['required']"
+        >Le champ nom est obligatoire</span
+      >
+      <span *ngIf="signInForm.controls.email.errors?.['email']"
+        >Veuillez saisir un email au bon format</span
+      >
+    </div> -->
+
+    <label for="password">Saisissez votre mot de passe</label>
+    <input
+      formControlName="password"
+      id="password"
+      name="password"
+      placeholder="Mot de passe"
+    />
+    <!-- <div *ngIf="myForm.submitted && signInForm.controls.password.errors">
+      <span *ngIf="signInForm.controls.password.errors?.['required']"
+        >Le champ Mot de passe est obligatoire</span
+      >
+      <span *ngIf="signInForm.controls.password.errors?.['minlength']"
+        >Votre mot de passe doit contenir au moins 8 caractères</span
+      > -->
+  </div>
+  <!-- ----------------------------------------------------------------- -->
+
+  <div formGroupName="address">
+    <label for="street">Rue : </label>
+    <input
+      formControlName="street"
+      type="text"
+      id="street"
+      name="street"
+      placeholder="20 rue du moulin"
+    />
+    <!-- <div *ngIf="myForm.submitted && signInForm.controls.street.errors">
+        <span *ngIf="signInForm.controls.street.errors?.['required']"
+          >Le champ rue est obligatoire</span
+        >
+      </div> -->
+
+    <label for="city">Ville : </label>
+    <input
+      formControlName="city"
+      type="text"
+      id="city"
+      name="city"
+      placeholder="LYON"
+    />
+    <!-- <div *ngIf="myForm.submitted && signInForm.controls.city.errors">
+      <span *ngIf="signInForm.controls.city.errors?.['required']"
+        >Le champ ville est obligatoire</span
+      >
+    </div> -->
+
+    <label for="zipCode">CP : </label>
+    <input
+      formControlName="zipCode"
+      type="text"
+      id="zipCode"
+      name="zipCode"
+      placeholder="20 rue du moulin"
+    />
+    <!-- <div *ngIf="myForm.submitted && signInForm.controls.zipCode.errors">
+    <span *ngIf="signInForm.controls.zipCode.errors?.['required']"
+      >Le champ CP est obligatoire</span
+    >
+  </div> -->
+  </div>
+  <div class="button-container">
+    <button type="submit" [disabled]="signInForm.invalid">S'inscrire</button>
+  </div>
+</form>
+
+<div>
+  <p>
+    {{ user.userName }}
+  </p>
+</div>
