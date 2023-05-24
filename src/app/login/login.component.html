@@ -8,11 +8,17 @@
       name="userName"
       placeholder="Arguel"
     />
-    <!-- <div *ngIf="myForm.submitted && signInForm.controls.userName.errors">
-      <span *ngIf="signInForm.controls.userName.errors?.['required']"
-        >Le champ nom est obligatoire</span
+    <div
+      *ngIf="
+        signInForm.controls['userName'].errors &&
+        !signInForm.controls['userName'].pristine
+      "
+      class="error-msg"
+    >
+      <div [hidden]="!signInForm.controls['userName'].errors['required']"
+        >Le champ nom est obligatoire</div
       >
-    </div> -->
+    </div>
 
     <label for="email">Votre Mail</label>
     <input
@@ -22,14 +28,12 @@
       name="email"
       placeholder="arguel@gmail.com"
     />
-    <!-- <div *ngIf="myForm.submitted && signInForm.controls.email.errors">
-      <span *ngIf="signInForm.controls.email.errors?.['required']"
-        >Le champ nom est obligatoire</span
+    <div *ngIf="myForm.submitted && signInForm.controls['email'].errors">
+      <div [hidden]="signInForm.controls['email'].errors['required']"
+        >Le champ nom est obligatoire</div
       >
-      <span *ngIf="signInForm.controls.email.errors?.['email']"
-        >Veuillez saisir un email au bon format</span
-      >
-    </div> -->
+          <div [hidden]="!signInForm.get('email')?.invalid">email is invalid.</div>
+    </div>
 
     <label for="password">Saisissez votre mot de passe</label>
     <input
@@ -38,66 +42,65 @@
       name="password"
       placeholder="Mot de passe"
     />
-    <!-- <div *ngIf="myForm.submitted && signInForm.controls.password.errors">
-      <span *ngIf="signInForm.controls.password.errors?.['required']"
-        >Le champ Mot de passe est obligatoire</span
-      >
-      <span *ngIf="signInForm.controls.password.errors?.['minlength']"
-        >Votre mot de passe doit contenir au moins 8 caractères</span
-      > -->
-  </div>
-  <!-- ----------------------------------------------------------------- -->
+    <div *ngIf="signInForm.get('password')?.errors && !signInForm.get('password')?.pristine" class="error-msg">
+      <div [hidden]="!signInForm.get('password')?.errors?.['required']">password is required.</div>
+      <div [hidden]="!signInForm.get('password')?.invalid">password is invalid.</div>
+    </div>
+    <!-- ----------------------------------------------------------------- -->
 
-  <div formGroupName="address">
-    <label for="street">Rue : </label>
-    <input
-      formControlName="street"
-      type="text"
-      id="street"
-      name="street"
-      placeholder="20 rue du moulin"
-    />
-    <!-- <div *ngIf="myForm.submitted && signInForm.controls.street.errors">
-        <span *ngIf="signInForm.controls.street.errors?.['required']"
-          >Le champ rue est obligatoire</span
+    <div formGroupName="address">
+      <label for="street">Rue : </label>
+      <input
+        formControlName="street"
+        type="text"
+        id="street"
+        name="street"
+        placeholder="20 rue du moulin"
+      />
+      <!-- <div *ngIf="myForm.submitted && signInForm.controls['address.street'].errors">
+        <div [hidden]="signInForm.controls['street'].errors['required']"
+          >Le champ rue est obligatoire</div
         >
       </div> -->
 
-    <label for="city">Ville : </label>
-    <input
-      formControlName="city"
-      type="text"
-      id="city"
-      name="city"
-      placeholder="LYON"
-    />
-    <!-- <div *ngIf="myForm.submitted && signInForm.controls.city.errors">
-      <span *ngIf="signInForm.controls.city.errors?.['required']"
-        >Le champ ville est obligatoire</span
-      >
+      <label for="city">Ville : </label>
+      <input
+        formControlName="city"
+        type="text"
+        id="city"
+        name="city"
+        placeholder="LYON"
+      />
+      <!-- <div *ngIf="myForm.submitted && signInForm.controls['city'].errors">
+        <div [hidden]="signInForm.controls['city'].errors['required']"
+          >Le champ ville est obligatoire</div
+        >
+      </div> -->
+
+      <label for="zipCode">CP : </label>
+      <input
+        formControlName="zipCode"
+        type="text"
+        id="zipCode"
+        name="zipCode"
+        placeholder="20 rue du moulin"
+      />
+      <!-- <div *ngIf="myForm.submitted && signInForm.controls['zipCode'].errors">
+        <div [hidden]="signInForm.controls['zipCode'].errors['required']"
+          >Le champ CP est obligatoire</div
+        >
+      </div> -->
+    </div>
+    <div class="button-container">
+      <!-- <button type="submit" [disabled]="signInForm.invalid">S'inscrire</button> -->
+      <button type="submit">S'inscrire</button>
+
+    </div>
+
+    <!-- <div>
+      <p>
+        {{ user.userName }}
+      </p>
     </div> -->
+  
 
-    <label for="zipCode">CP : </label>
-    <input
-      formControlName="zipCode"
-      type="text"
-      id="zipCode"
-      name="zipCode"
-      placeholder="20 rue du moulin"
-    />
-    <!-- <div *ngIf="myForm.submitted && signInForm.controls.zipCode.errors">
-    <span *ngIf="signInForm.controls.zipCode.errors?.['required']"
-      >Le champ CP est obligatoire</span
-    >
-  </div> -->
-  </div>
-  <div class="button-container">
-    <button type="submit" [disabled]="signInForm.invalid">S'inscrire</button>
-  </div>
-</form>
-
-<div>
-  <p>
-    {{ user.userName }}
-  </p>
-</div>
